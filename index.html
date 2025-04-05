@@ -72,30 +72,30 @@
   </section>
 
   <!-- Sign-Up Section -->
-<section id="signup" class="signup">
-  <h2>Ready to Grow?</h2>
-  <form id="lead-form">
-    <div class="form-group">
-      <input type="text" id="name" name="name" required>
-      <label for="name">Name</label>
+  <section id="signup" class="signup">
+    <h2>Ready to Grow?</h2>
+    <form id="lead-form">
+      <div class="form-group">
+        <input type="text" id="name" name="name" required>
+        <label for="name">Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" required>
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" name="message" required></textarea>
+        <label for="message">Message</label>
+      </div>
+      <button type="submit" class="submit-button">
+        <span class="button-text">Submit</span>
+        <span class="button-icon">→</span>
+      </button>
+    </form>
+    <div id="success-message" class="hidden">
+      <span>✔</span> Thank you! We'll be in touch soon.
     </div>
-    <div class="form-group">
-      <input type="email" id="email" name="email" required>
-      <label for="email">Email</label>
-    </div>
-    <div class="form-group">
-      <textarea id="message" name="message" required></textarea>
-      <label for="message">Message</label>
-    </div>
-    <button type="submit" class="submit-button">
-      <span class="button-text">Submit</span>
-      <span class="button-icon">→</span>
-    </button>
-  </form>
-  <div id="success-message" class="hidden">
-    <span>✔</span> Thank you! We'll be in touch soon.
-  </div>
-</section>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -109,6 +109,10 @@
     </div>
   </footer>
 
+  <!-- ✅ GSAP and ScrollTrigger added here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
+
