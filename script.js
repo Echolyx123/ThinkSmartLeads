@@ -1,6 +1,4 @@
-// GSAP Scroll Animations
-gsap.registerPlugin(ScrollTrigger);
-
+// ==== GSAP Scroll Animations ====
 const animateOnScroll = (selector, options) => {
   gsap.from(selector, {
     opacity: 0,
@@ -22,32 +20,30 @@ animateOnScroll('.card', { trigger: '.value-proposition' });
 animateOnScroll('.service-card', { trigger: '.services' });
 animateOnScroll('.testimonial', { trigger: '.testimonials' });
 
-// Custom Cursor Interaction
+// ==== Custom Cursor ====
 const cursor = document.createElement('div');
 cursor.classList.add('custom-cursor');
 document.body.appendChild(cursor);
 
-const updateCursor = (e) => {
+document.addEventListener('mousemove', (e) => {
   cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-};
+});
 
 const handleHover = (elements, className) => {
-  elements.forEach((element) => {
-    element.addEventListener('mouseenter', () => cursor.classList.add(className));
-    element.addEventListener('mouseleave', () => cursor.classList.remove(className));
+  elements.forEach((el) => {
+    el.addEventListener('mouseenter', () => cursor.classList.add(className));
+    el.addEventListener('mouseleave', () => cursor.classList.remove(className));
   });
 };
 
-document.addEventListener('mousemove', updateCursor);
 handleHover(document.querySelectorAll('a, button, input, textarea'), 'hover');
 
-// Optional: Add a click animation to the cursor
 document.addEventListener('click', () => {
   cursor.classList.add('click');
   setTimeout(() => cursor.classList.remove('click'), 200);
 });
 
-// Hero Section Animation
+// ==== Hero Animation ====
 gsap.from('.hero-content', {
   opacity: 0,
   y: 50,
@@ -80,7 +76,7 @@ gsap.from('.cta-button', {
   delay: 2,
 });
 
-// ==== Website Sign-Up Form Logic ====
+// ==== Form Logic ====
 document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("lead-form");
   const successMessage = document.getElementById("success-message");
@@ -96,12 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-       const response = await fetch("https://thinksmart-api.onrender.com/api/submit", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data)
-});
-
+        const response = await fetch("https://thinksmart-api.onrender.com/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
 
         const result = await response.json();
 
