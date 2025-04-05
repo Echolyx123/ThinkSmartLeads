@@ -1,25 +1,3 @@
-// Form Submission Handling
-document.getElementById('lead-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const successMessage = document.getElementById('success-message');
-  const form = document.getElementById('lead-form');
-
-  // Simulate form submission (e.g., API call)
-  setTimeout(() => {
-    // Hide form and show success message
-    form.style.display = 'none';
-    successMessage.classList.add('visible');
-
-    // Reset form and UI after 3 seconds
-    setTimeout(() => {
-      form.style.display = 'flex';
-      successMessage.classList.remove('visible');
-      form.reset(); // Reset form fields
-    }, 3000);
-  }, 500); // Simulate a slight delay for "processing"
-});
-
 // GSAP Scroll Animations
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,7 +39,6 @@ const handleHover = (elements, className) => {
 };
 
 document.addEventListener('mousemove', updateCursor);
-
 handleHover(document.querySelectorAll('a, button, input, textarea'), 'hover');
 
 // Optional: Add a click animation to the cursor
@@ -76,7 +53,7 @@ gsap.from('.hero-content', {
   y: 50,
   duration: 1.5,
   ease: 'power3.out',
-  delay: 0.5, // Delay the animation slightly
+  delay: 0.5,
 });
 
 gsap.from('.hero h1', {
@@ -84,7 +61,7 @@ gsap.from('.hero h1', {
   y: 30,
   duration: 1,
   ease: 'power3.out',
-  delay: 1, // Delay the title animation
+  delay: 1,
 });
 
 gsap.from('.hero p', {
@@ -92,7 +69,7 @@ gsap.from('.hero p', {
   y: 30,
   duration: 1,
   ease: 'power3.out',
-  delay: 1.5, // Delay the subtitle animation
+  delay: 1.5,
 });
 
 gsap.from('.cta-button', {
@@ -100,5 +77,44 @@ gsap.from('.cta-button', {
   y: 30,
   duration: 1,
   ease: 'power3.out',
-  delay: 2, // Delay the button animation
+  delay: 2,
+});
+
+// ==== Website Sign-Up Form Logic ====
+document.addEventListener("DOMContentLoaded", () => {
+  const signupForm = document.getElementById("lead-form");
+  const successMessage = document.getElementById("success-message");
+
+  if (signupForm) {
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: signupForm.name.value.trim(),
+        email: signupForm.email.value.trim(),
+        message: signupForm.message.value.trim()
+      };
+
+      try {
+        const response = await fetch("http://localhost:5000/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          signupForm.reset();
+          successMessage.classList.remove("hidden");
+          successMessage.style.color = "green";
+        } else {
+          alert(result.error || "Something went wrong.");
+        }
+      } catch (error) {
+        alert("Submission failed. Please try again later.");
+        console.error("Form error:", error);
+      }
+    });
+  }
 });
