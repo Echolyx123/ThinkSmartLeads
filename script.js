@@ -78,6 +78,8 @@ gsap.from('.cta-button', {
 
 // ==== Form Logic ====
 document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
   const signupForm = document.getElementById("lead-form");
   const successMessage = document.getElementById("success-message");
 
