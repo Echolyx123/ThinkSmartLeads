@@ -109,9 +109,13 @@
     </div>
   </footer>
 
- <!-- ✅ GSAP and ScrollTrigger scripts with defer -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+ <!-- ✅ Load GSAP and ScrollTrigger properly -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script defer>
+  // ✅ Register ScrollTrigger before your script runs
+  gsap.registerPlugin(ScrollTrigger);
+</script>
 <script defer src="script.js"></script>
 </body>
 </html>
