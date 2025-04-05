@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        const response = await fetch("https://thinksmart-api.onrender.com/api/submit", {
+        const response = await fetch("https://thinksmart-api.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
